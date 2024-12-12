@@ -1,4 +1,5 @@
 using Web_Framewk_CA2.Components;
+using Web_Framewk_CA2.Components.Services;
 
 namespace Web_Framewk_CA2
 {
@@ -12,7 +13,13 @@ namespace Web_Framewk_CA2
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
 
+            builder.Services.AddHttpClient();
+            builder.Services.AddScoped<WeatherService>();
+
             var app = builder.Build();
+
+            
+
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
