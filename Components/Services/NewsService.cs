@@ -14,17 +14,24 @@ namespace Web_Framewk_CA2.Components.Services
         public NewsService(HttpClient httpClient)
         {
             _httpClient = httpClient;
+
+            if (!_httpClient.DefaultRequestHeaders.UserAgent.Any())
+            {
+                _httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("myApp/1.0");
+            }
         }
 
-        public async Task<NewsData> GetNewsAsync(string city)
+        public async Task<Article[]> GetNewsAsync(string city)
         {
             var response = await _httpClient.GetAsync($"{BaseUrl}?q={city}&apiKey={ApiKey}");
             if (response.IsSuccessStatusCode)
             {
                 var json = await response.Content.ReadAsStringAsync();
-                return JsonSerializer.Deserialize<NewsData>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
-            }
-            return null;
+                var newsData = JsonSerializer.Deserialize<NewsData>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+                return newsData?.Articles;
         }
+        return null;
+
+    }
     }
 }

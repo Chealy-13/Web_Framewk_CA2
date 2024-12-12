@@ -15,6 +15,7 @@ namespace Web_Framewk_CA2
 
             builder.Services.AddHttpClient();
             builder.Services.AddScoped<WeatherService>();
+            builder.Services.AddScoped<NewsService>();
 
             var app = builder.Build();
 

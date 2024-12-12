@@ -1,0 +1,65 @@
+﻿@rendermode InteractiveServer
+@page "/news"
+@using Web_Framewk_CA2.Components.Model
+@inject Web_Framewk_CA2.Components.Services.NewsService NewsService
+@inject HttpClient Http
+
+<h3>Search News</h3>
+
+<input @bind="City" placeholder="Enter city name" />
+<button @onclick="FetchNews">Search</button>
+
+@if (IsLoading)
+{
+    <p>Loading...</p>
+}
+else if (NewsArticles != null && NewsArticles.Length > 0)
+{
+    <h4>News for @City</h4>
+    <ul>
+        @foreach (var article in NewsArticles)
+        {
+            <li>
+                <a href="@article.Url" target="_blank">@article.Title</a>
+                <p>@article.Description</p>
+            </li>
+        }
+    </ul>
+}
+else if (ShowError)
+{
+    <p style="color:red;">Unable to fetch news. Please check the city name.</p>
+}
+
+@code {
+    private string City { get; set; }
+    private Article[] NewsArticles { get; set; }
+    private bool IsLoading { get; set; } = false;
+    private bool ShowError { get; set; } = false;
+
+    private async Task FetchNews()
+    {
+        if (string.IsNullOrWhiteSpace(City))
+        {
+            ShowError = true;
+            return;
+        }
+        IsLoading = true;
+        ShowError = false;
+
+        try
+        {
+            NewsArticles = await NewsService.GetNewsAsync(City);
+            if (NewsArticles == null || NewsArticles.Length == 0)
+            {
+                ShowError = true;
+            }
+        }
+        catch
+        {
+            ShowError = true;
+        }
+
+        IsLoading = false;
+    }
+}

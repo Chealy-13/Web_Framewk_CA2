@@ -20,12 +20,14 @@ else if (CurrentWeather != null)
     <p>Feels Like: @CurrentWeather.Main.Feels_Like °C</p>
     <p>Humidity: @CurrentWeather.Main.Humidity%</p>
     <p>Description: @CurrentWeather.Weather[0].Description</p>
+    <br />
+    <a href="/news">Click here to view related news</a>
 }
 else if (ShowError)
 {
     <p style="color:red;">Unable to fetch weather. Please check the city name.</p>
 }
-
+   
 @code {
     private string City { get; set; }
     private WeatherData CurrentWeather { get; set; }
