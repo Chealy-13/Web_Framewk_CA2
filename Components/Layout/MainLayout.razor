@@ -1,23 +1,25 @@
 ﻿@inherits LayoutComponentBase
 
 <div class="page">
-    <div class="sidebar">
+    <div style="background-image:none;background-color:turquoise;" class="sidebar">
         <NavMenu />
     </div>
 
     <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+        <div class="page">
+
+            <a href="/" class="navbar-brand">
+                <img src="/sample-data/Logo.png" alt="MusicManager Logo" class="logo" />
+
+
+            </a>
         </div>
 
-        <article class="content px-4">
+        <article class="content px-1">
             @Body
         </article>
     </main>
 </div>
+<style>
 
-<div id="blazor-error-ui">
-    An unhandled error has occurred.
-    <a href="" class="reload">Reload</a>
-    <a class="dismiss">🗙</a>
-</div>
+</style>

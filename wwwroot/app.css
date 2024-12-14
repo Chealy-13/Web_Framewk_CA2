@@ -13,7 +13,7 @@ a, .btn-link {
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 .content {
@@ -48,4 +48,15 @@ h1:focus {
 
 .darker-border-checkbox.form-check-input {
     border-color: #929292;
+}
+
+.nav-scrollable {
+    background-color: red; /* Set the background color to red */
+    color: white; /* Optional: Set the text color to white for better contrast */
+    padding: 10px; /* Optional: Add padding to make the area visually appealing */
+    border: 1px solid darkred; /* Optional: Add a border for styling */
+}
+.bi-cloud-sun-fill {
+    font-size: 1.5rem; /* Adjust size */
+    color: white; /* Adjust color */
 }
